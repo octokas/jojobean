@@ -1,0 +1,622 @@
+<title>For Galit – Jojo Bean</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap">
+<style>
+    :root {
+        --bg: #f5f0e8;
+        --bg-section: #faf7f2;
+        --bg-card: #ffffff;
+        --text: #1a1e2e;
+        --text-muted: #5a5f74;
+        --text-light: #8a8fa4;
+        --gold: #c9983a;
+        --gold-light: #e8c87a;
+        --sage: #5c876e;
+        --rose: #b06878;
+        --navy: #1a1e2e;
+        --divider: #ddd8ce;
+        --script-bg: #fdf9f1;
+        --script-border: #c9983a;
+        --song-bg: #1a1e2e;
+        --song-text: #f5f0e8;
+        --song-accent: #c9983a;
+        --shadow: rgba(26, 30, 46, 0.10);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+            --bg: #12151f;
+            --bg-section: #161a27;
+            --bg-card: #1e2235;
+            --text: #ede8df;
+            --text-muted: #a8acc0;
+            --text-light: #6e738a;
+            --gold: #d4a84a;
+            --gold-light: #e8c87a;
+            --sage: #7aaa8c;
+            --rose: #cc8090;
+            --divider: #2a2f45;
+            --script-bg: #1a1e2e;
+            --script-border: #c9983a;
+            --song-bg: #0d1019;
+            --song-text: #ede8df;
+            --song-accent: #d4a84a;
+            --shadow: rgba(0, 0, 0, 0.35);
+        }
+    }
+
+    :root[data-theme="dark"] {
+        --bg: #12151f;
+        --bg-section: #161a27;
+        --bg-card: #1e2235;
+        --text: #ede8df;
+        --text-muted: #a8acc0;
+        --text-light: #6e738a;
+        --gold: #d4a84a;
+        --gold-light: #e8c87a;
+        --sage: #7aaa8c;
+        --rose: #cc8090;
+        --divider: #2a2f45;
+        --script-bg: #1a1e2e;
+        --script-border: #c9983a;
+        --song-bg: #0d1019;
+        --song-text: #ede8df;
+        --song-accent: #d4a84a;
+        --shadow: rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Lato', system-ui, sans-serif;
+        font-weight: 400;
+        line-height: 1.7;
+        padding-inline: 20px;
+        padding-block: 0;
+        max-width: 780px;
+        margin-inline: auto;
+    }
+
+    /* ── Cover ── */
+    .cover {
+        text-align: center;
+        padding-block: 72px 60px;
+        border-bottom: 1px solid var(--divider);
+    }
+
+    .cover-hebrew {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-style: italic;
+        font-size: clamp(1rem, 3vw, 1.2rem);
+        color: var(--gold);
+        letter-spacing: 0.06em;
+        margin-bottom: 16px;
+    }
+
+    .cover-title {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: clamp(2.4rem, 8vw, 4.2rem);
+        font-weight: 700;
+        line-height: 1.1;
+        color: var(--text);
+        text-wrap: balance;
+        margin-bottom: 8px;
+    }
+
+    .cover-nickname {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-style: italic;
+        font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+        color: var(--rose);
+        margin-bottom: 28px;
+    }
+
+    .cover-divider {
+        width: 48px;
+        height: 2px;
+        background: var(--gold);
+        margin: 0 auto 28px;
+    }
+
+    .cover-tagline {
+        font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+        color: var(--text-muted);
+        max-width: 480px;
+        margin: 0 auto 20px;
+        line-height: 1.65;
+    }
+
+    .cover-note {
+        font-size: 0.82rem;
+        color: var(--text-light);
+        font-style: italic;
+    }
+
+    /* ── Chapters ── */
+    .chapter {
+        padding-block: 52px 44px;
+        border-bottom: 1px solid var(--divider);
+    }
+
+    .chapter:last-of-type {
+        border-bottom: none;
+    }
+
+    .chapter-eyebrow {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--text-light);
+        margin-bottom: 10px;
+    }
+
+    .chapter-title {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: clamp(1.5rem, 5vw, 2.2rem);
+        font-weight: 600;
+        line-height: 1.2;
+        text-wrap: balance;
+        color: var(--text);
+        margin-bottom: 20px;
+    }
+
+    .chapter-title em {
+        font-style: italic;
+        color: var(--rose);
+    }
+
+    /* ── Song cue pill ── */
+    .song-cue {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--song-bg);
+        color: var(--song-text);
+        border-radius: 6px;
+        padding: 10px 16px;
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        margin-bottom: 28px;
+        max-width: 100%;
+    }
+
+    .song-cue-note {
+        color: var(--song-accent);
+    }
+
+    .song-cue-label {
+        font-weight: 300;
+        opacity: 0.7;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding-right: 10px;
+        border-right: 1px solid rgba(255, 255, 255, 0.18);
+        margin-right: 2px;
+    }
+
+    .song-cue-icon {
+        font-size: 1rem;
+        flex-shrink: 0;
+    }
+
+    /* ── Script block ── */
+    .script-block {
+        background: var(--script-bg);
+        border-left: 3px solid var(--script-border);
+        border-radius: 0 8px 8px 0;
+        padding: 22px 24px;
+        margin-block: 24px;
+    }
+
+    .script-block p {
+        font-size: clamp(0.95rem, 2.5vw, 1.06rem);
+        color: var(--text);
+        margin-bottom: 16px;
+        line-height: 1.75;
+    }
+
+    .script-block p:last-child {
+        margin-bottom: 0;
+    }
+
+    .script-block .speaker {
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--gold);
+        margin-bottom: 8px;
+    }
+
+    .script-block em {
+        font-style: italic;
+        color: var(--text-muted);
+    }
+
+    .script-block strong {
+        font-weight: 700;
+        color: var(--text);
+    }
+
+    /* ── Director note ── */
+    .director-note {
+        font-size: 0.84rem;
+        color: var(--text-muted);
+        font-style: italic;
+        padding: 12px 16px;
+        border-radius: 6px;
+        background: var(--bg-card);
+        margin-top: 16px;
+        line-height: 1.6;
+        border: 1px solid var(--divider);
+    }
+
+    .director-note strong {
+        font-style: normal;
+        font-weight: 700;
+        color: var(--text-muted);
+    }
+
+    /* ── Fun moment badge ── */
+    .fun-badge {
+        display: inline-block;
+        background: var(--rose);
+        color: #fff;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        border-radius: 4px;
+        padding: 3px 10px;
+        margin-bottom: 14px;
+        vertical-align: middle;
+    }
+
+    .sentimental-badge {
+        display: inline-block;
+        background: var(--sage);
+        color: #fff;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        border-radius: 4px;
+        padding: 3px 10px;
+        margin-bottom: 14px;
+        vertical-align: middle;
+    }
+
+    /* ── Lyric echo ── */
+    .lyric-echo {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-style: italic;
+        font-size: clamp(1.1rem, 3.5vw, 1.35rem);
+        color: var(--gold);
+        text-align: center;
+        padding: 20px 0 4px;
+        line-height: 1.5;
+    }
+
+    /* ── Closing ── */
+    .closing {
+        text-align: center;
+        padding-block: 60px;
+    }
+
+    .closing-dedication {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: clamp(1.5rem, 5vw, 2rem);
+        font-weight: 600;
+        color: var(--text);
+        text-wrap: balance;
+        margin-bottom: 12px;
+    }
+
+    .closing-hebrew {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-style: italic;
+        font-size: 1.1rem;
+        color: var(--gold);
+        margin-bottom: 28px;
+    }
+
+    .closing-divider {
+        width: 48px;
+        height: 2px;
+        background: var(--gold);
+        margin: 0 auto 28px;
+    }
+
+    .closing-note {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        max-width: 420px;
+        margin: 0 auto;
+        line-height: 1.7;
+        font-style: italic;
+    }
+
+    /* ── Wave meaning callout ── */
+    .meaning-callout {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        background: var(--bg-card);
+        border-radius: 8px;
+        padding: 16px 20px;
+        margin-block: 20px;
+        border: 1px solid var(--divider);
+    }
+
+    .meaning-callout-icon {
+        font-size: 1.5rem;
+        flex-shrink: 0;
+        line-height: 1.4;
+    }
+
+    .meaning-callout-text {
+        font-size: 0.88rem;
+        color: var(--text-muted);
+        line-height: 1.65;
+    }
+
+    .meaning-callout-text strong {
+        font-weight: 700;
+        color: var(--gold);
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    hr.wave {
+        border: none;
+        border-top: 1px dashed var(--divider);
+        margin-block: 24px;
+    }
+
+    @media (max-width: 500px) {
+        .song-cue {
+            flex-wrap: wrap;
+        }
+        .script-block {
+            padding: 18px 16px;
+        }
+    }
+
+    .spotify-sharing {
+        padding-bottom: 5px;
+        padding-right: 5px;
+    }
+
+</style>
+<!-- ── COVER ── -->
+<div class="cover">
+    <div class="cover-hebrew">גָּלִית — Galit</div>
+    <h1 class="cover-title">For Georgia</h1>
+    <div class="cover-nickname">Jojo Bean</div>
+    <div class="cover-divider">
+    </div>
+    <p class="cover-tagline">A personal video script — from me, to her — for the moments we shared before she was old enough to remember, and the ones she'll carry forward from here.</p>
+    <p class="cover-note">Kaska's personal version · to be played separately if needed · written with love</p>
+</div>
+<!-- ── CHAPTER 1 ── -->
+<div class="chapter">
+    <div class="chapter-eyebrow">Chapter One</div>
+    <h2 class="chapter-title">Before You Knew I Was Watching</h2>
+    <div class="song-cue">
+        <span class="song-cue-icon">♪</span>
+        <span class="song-cue-label">Music</span>
+        <span>Comes and Goes (In Waves) — Greg Laswell</span>
+        <span class="song-cue-note">soft, beneath the words</span>
+    </div>
+    <div class="meaning-callout">
+        <div class="meaning-callout-icon">🌊</div>
+        <div class="meaning-callout-text"> <strong>Your Hebrew name</strong> Galit means <em>waves of joy.</em> And this song — "Comes and Goes (In Waves)" — plays underneath these first words for a reason. You, Jojo, have always come in waves. Not quiet ones. The real kind. </div>
+    </div>
+    <div class="script-block">
+        <p>I first met you in your Saba's basement.</p>
+        <p>Your momma was figuring out what came next — you know, the kind of figuring out that takes everything a person has. And there you were, on the couch, teaching me everything I never knew I needed to know about Doc McStuffins. Every song. Every character. With full commitment.</p>
+        <p>You just being silly little… <em>you.</em> Probably no idea I'd remember your name. Definitely no idea I'd remember you forever.</p>
+        <p>
+            <b>But I did.</b>
+        </p>
+        <p>I remembered the way you existed in that space like you owned it — quietly, completely, on your own terms. Even then. <em>Even then.</em></p>
+        <p>Back then, you would've known me as <em>Samiah</em>. But I'll get to that.</p>
+    </div>
+    <div class="spotify-sharing">
+        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/2KhS0LVOw9ralhfbcIi7vL?utm_source=generator&si=2c072f85c10f4d5e" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+        </iframe>
+    </div>
+    <div class="director-note"><strong>Note:</strong> Showing earliest photos of her in Zim's basement apartment — especially any from when she was very little, in a home setting. Let this section breathe slowly, 4–5 seconds per photo.</div>
+</div>
+<!-- ── CHAPTER 2 ── -->
+<div class="chapter">
+    <div class="chapter-eyebrow">Chapter Two</div>
+    <h2 class="chapter-title">Her Momma, <em>Ilana</em></h2>
+    <div class="song-cue">
+        <span class="song-cue-icon">♪</span>
+        <span class="song-cue-label">Music</span>
+        <span>Try — Mandy Harvey</span>
+        <span class="song-cue-note">continues softly · brings up slightly here</span>
+    </div>
+    <div class="script-block">
+        <p>I want to stop here for a second, Jojo, because you need to hear this.</p>
+        <p>The woman raising you? She is one of the most remarkable people I know. What your momma Ilana has built — for you, for your sister, for herself — that's not luck. That's grit. That's love with its sleeves rolled up. That's waking up every day and deciding to <strong>try</strong> even when trying is hard.</p>
+        <p>I am truly in awe of what she has done.</p>
+        <p>And I need you to know — when life gets heavy, when it feels overwhelming, when you don't know what comes next — you look at your momma. You channel your inner Ilana. Because that woman? She figured it out. She always does.</p>
+        <p>
+            <b>And so will you. Because you are her daughter.</b>
+        </p>
+    </div>
+    <div class="spotify-sharing">
+        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/2FGL4VLNch1EF8bWnzz9io?utm_source=generator&si=95f72332f1794b2a" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+        </iframe>
+    </div>
+    <div class="director-note"><strong>Note:</strong> Photos of Jojo with her mom, Ilana — candid, real moments. Hugs, laughing, ordinary life. Let people see their relationship.</div>
+</div>
+<!-- ── CHAPTER 3 ── -->
+<div class="chapter">
+    <div class="chapter-eyebrow">Chapter Three · <span class="fun-badge">A little gnarly</span></div>
+    <h2 class="chapter-title">The Jojo Bean I Know Now</h2>
+    <div class="song-cue">
+        <span class="song-cue-icon">♪</span>
+        <span class="song-cue-label">Music</span>
+        <span>Gnarly — Katseye</span>
+        <span class="song-cue-note">20–30 sec clip · her moment · crank it</span>
+    </div>
+    <div class="spotify-sharing">
+        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/4lpRqTVtUNmZ31PSq4lH98?utm_source=generator&si=12092272731a4e4e" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+        </iframe>
+    </div>
+    <div class="spotify-sharing">
+        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/151pHp99ciTnpmdPCvgLbe?utm_source=generator&si=2faa66ce77fe4e32" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+        </iframe>
+    </div>
+    <div class="script-block">
+        <div class="speaker">[ let the Gnarly clip play — no words — over silly photos of her ]</div>
+        <p>
+            <em>Let the song do the work. This is her era. Let it land.</em>
+        </p>
+    </div>
+    <hr class="wave">
+    <div class="song-cue">
+        <span class="song-cue-icon">♪</span>
+        <span class="song-cue-label">Continues →</span>
+        <span>I Won't Give Up — Jason Mraz</span>
+        <span class="song-cue-note">brings things back, warm and steady</span>
+    </div>
+    <div class="script-block">
+        <p>Now. Where were we.</p>
+        <p>Golf carts. Laser tag. Bowling — where, I want the record to show, someone once <strong>stole my bowling ball</strong> and I will not name names but her nickname rhymes with "Jo-Jo Bean."</p>
+        <p>But she is kind of my most perfect laser tag team-mate. Always coming up with secret strategies to make us top-notch winners!</p>
+        <p>And she happens to write bug jokes that I am absolutely certain no one else on earth would find as funny as we do.</p>
+        <p>Lady Ophelia — my dog, who, in case anyone is wondering, chose Jojo immediately and without hesitation. Dogs know people. Lady Ophelia knows people.</p>
+        <p>And then there's the golf cart.</p>
+        <p>The day you got behind that wheel? Jojo, you were <strong>nervous.</strong> I saw it. You saw it. The golf cart definitely sensed it. But you did it anyway. You drove that thing like an absolute <em>baws,</em> and I was so proud of you I almost fell out of the passenger seat.</p>
+        <p>That's who you are. You feel the fear, and then you drive the cart anyway.</p>
+    </div>
+    <div class="spotify-sharing">
+        <iframe data-testid="embed-iframe" style="border-radius:12px;" src="https://open.spotify.com/embed/track/4G9addS7Yq5ihZBQLXG2Mj?utm_source=generator&si=455ae0adff964237" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+        </iframe>
+    </div>
+    <div class="spotify-sharing">
+        <iframe data-testid="embed-iframe" style="border-radius:12px;" src="https://open.spotify.com/embed/track/4cx8avIS7rxGKDqBHKxbpI?utm_source=generator&si=d503ffef92cc4e46" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+        </iframe>
+    </div>
+    <div class="spotify-sharing">
+        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/6Uy6K3KdmUdAfelUp0SeXn?utm_source=generator&si=c1e2883337924737" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+        </iframe>
+    </div>
+    <div class="director-note"><strong>Note:</strong> Golf cart photos are gold here, along with our bowling & laser tag photos, and Ophelia photos. Basically all of our silly activity shots — bowling, laser tag — go in this section; AND the photos of our butterflies, bug joke books, etc.</div>
+</div>
+<!-- ── CHAPTER 4 ── -->
+<div class="chapter">
+    <div class="chapter-eyebrow">Chapter Four · <span class="sentimental-badge">tender</span></div>
+    <h2 class="chapter-title">On Waves, and Being <em>Okay</em></h2>
+    <div class="song-cue">
+        <span class="song-cue-icon">♪</span>
+        <span class="song-cue-label">Music</span>
+        <span>Okay — Nightbirde</span>
+        <span class="song-cue-note">building · let it breathe</span>
+    </div>
+    <div class="meaning-callout">
+        <div class="meaning-callout-icon">🌊</div>
+        <div class="meaning-callout-text"> <strong>Galit — Waves of Joy</strong> The thing about waves is they can feel overwhelming when you're in the middle of one. But they also carry you. They always have. </div>
+    </div>
+    <div class="script-block">
+        <p>Jojo, I know you carry a lot inside. I know that sometimes the feelings come in big, and the world feels loud, and it can be easier to keep things tucked away where it feels safer.</p>
+        <p>I see that in you. And I love that in you. I do.</p>
+        <p>But your Hebrew name is <strong>Galit.</strong> It means <em>waves of joy.</em> And I think that's not an accident. Because the joy in you — the real stuff — it's not small. It doesn't trickle. It comes in <em>waves.</em></p>
+        <p>So I'm going to ask you something. Just one thing.</p>
+        <p>Let people see it. Even when it's scary. Even when the room feels big. Let them see the waves.</p>
+        <p>That's brave. That's you being brave. And you already know how to do it — you proved that on the golf cart.</p>
+    </div>
+    <div class="spotify-sharing">
+        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/7rawH9tbFhqEIJFkmzIdhB?utm_source=generator&si=fbe3cf71d44146cc" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+        </iframe>
+    </div>
+    <div class="director-note"><strong>Note:</strong> Quieter, more thoughtful photos here — her being herself, looking comfortable, any candid moment where she seems completely at ease. Slow the pace down again.</div>
+</div>
+<!-- ── CHAPTER 5 ── -->
+<div class="chapter">
+    <div class="chapter-eyebrow">Chapter Five</div>
+    <h2 class="chapter-title">What I Want You to Know</h2>
+    <div class="song-cue">
+        <span class="song-cue-icon">♪</span>
+        <span class="song-cue-label">Music</span>
+        <span>I'd Be Lying — Greg Laswell</span>
+        <span class="song-cue-note">bring up, let it breathe · let the lyric land</span>
+    </div>
+    <div class="script-block">
+        <p>I want to be honest with you, Jojo Bean. Because you're old enough now, and you deserve honesty more than you deserve something wrapped up neat.</p>
+        <p>I don't know exactly what my future looks like. You know that. Your momma knows that. And I'm not going to pretend otherwise, because that's not who I am and it's not what you need from me.</p>
+        <p>What I <em>do</em> know is this:</p>
+        <p>I am not going anywhere that I don't have to. I am here — for your momma, for your sister, and for you — for as long as I am here. Not because it's easy. Because it's where I want to be. <em>I'd be lying if I ran another way.</em></p>
+    </div>
+    <div class="lyric-echo">"There is not much that you can do, to get me to, run away from you…"</div>
+    <div class="script-block">
+        <p>And I need you to know that the time we have had — the golf carts, the bowling ball theft, the bug jokes, Lady Ophelia choosing you — all of it — has mattered to me more than I know how to say.</p>
+        <p>Every single moment. I was paying attention.</p>
+        <p>I still am.</p>
+    </div>
+    <div class="spotify-sharing">
+        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/1iWngaosCILwfQH054OKoO?utm_source=generator&si=464e453c99e64f42" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+        </iframe>
+    </div>
+    <div class="spotify-sharing">
+        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/53QF56cjZA9RTuuMZDrSA6?utm_source=generator&si=b8eb658f105c48c2" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+        </iframe>
+    </div>
+    <div class="director-note"><strong>Note:</strong> Let the song carry this section. Let the camera hold on one meaningful photo. Don't rush it. No narration over the instrumental bridge — just let it play.</div>
+</div>
+<!-- ── CHAPTER 6 — CLOSER ── -->
+<div class="chapter">
+    <div class="chapter-eyebrow">Chapter Six · The Close</div>
+    <h2 class="chapter-title">I Hope You Dance</h2>
+    <div class="song-cue">
+        <span class="song-cue-icon">♪</span>
+        <span class="song-cue-label">Music</span>
+        <span>I Hope You Dance — Lee Ann Womack</span>
+        <span class="song-cue-note">full volume · from the beginning · let it play all the way out</span>
+    </div>
+    <div class="script-block">
+        <p>Georgia.</p>
+        <p>Jojo Bean.</p>
+        <p>Today you stand in front of your faith, your family, and the people who love you — and you claim your place.</p>
+        <p>Not because the world handed it to you. Because <em>you</em> are ready for it.</p>
+        <p>I hope you stay curious. I hope you stay silly — never stop stealing bowling balls, I mean it, never stop. I hope you let Lady Ophelia remind you that you are exactly the kind of person worth choosing. I hope you are as brave as your momma. I hope you let the waves be what they are — big, beautiful, and yours.</p>
+        <p>And Galit —</p>
+    </div>
+    <div class="lyric-echo">"I hope you never lose your sense of wonder…"</div>
+    <div class="script-block">
+        <p>I hope you dance. And pump up the jam... and the pom-poms, now that you're an honorary pom-pom wearer <em>(whenever you feel like it of course).</em></p>
+        <p>I love you, Jojo Bean.</p>
+    </div>
+    <div class="spotify-sharing">
+        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/65B1tEOv5W294uCKbmEcFV?utm_source=generator&si=9547faabc2f449d5" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+        </iframe>
+    </div>
+    <div class="spotify-sharing">
+        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/21qnJAMtzC6S5SESuqQLEK?utm_source=generator&si=5e3b1c2a53024e96" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+        </iframe>
+    </div>
+    <div class="director-note"><strong>Note:</strong> Hold the final title card — just her name, and "Mazel Tov" — over the full song. Do not cut away early. Let folks sit. Hand over honorary pom-pom hat. Elbow bump if desired.</div>
+</div>
+<!-- ── CLOSING ── -->
+<div class="closing">
+    <div class="closing-dedication">Mazel Tov, Georgia.</div>
+    <div class="closing-hebrew">גָּלִית — Galit — Waves of Joy</div>
+    <div class="closing-divider">
+    </div>
+    <p class="closing-note">This script is written to be read by one voice — mine — directly to her. Recorded quietly. Unhurried. Like we're sitting after a crazy night of bowling, laser tag, puppy-love, and golf-cartin' fun.</p>
+</div>
